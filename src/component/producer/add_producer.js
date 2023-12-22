@@ -115,9 +115,15 @@ const AddProducer = () => {
                 borderColor={errors.gender ? "red.500" : "gray"}
                 placeholder="Select option"
               >
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="others">Others</option>
+                <option className="bg-dark" value="male">
+                  Male
+                </option>
+                <option className="bg-dark" value="female">
+                  Female
+                </option>
+                <option className="bg-dark" value="others">
+                  Others
+                </option>
               </Select>
             </FormControl>
             <FormControl id="dob" isRequired>

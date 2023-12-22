@@ -118,13 +118,20 @@ const EditMovie = () => {
     setActorsList(remove_arr);
   };
   const handleDiscard = (val) => {
-    if (confirm("Discard Changes")) {
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("Discard Changes?")) {
       delete localStorage["imdb-clone-edit"];
       navTo(`/${val}`);
     }
   };
   return (
-    <Flex minH={"100vh"} align={"center"} justify={"center"} bg={"black"}>
+    <Flex
+      className="text-white"
+      minH={"100vh"}
+      align={"center"}
+      justify={"center"}
+      bg={"black"}
+    >
       <Stack
         textAlign={"center"}
         spacing={8}

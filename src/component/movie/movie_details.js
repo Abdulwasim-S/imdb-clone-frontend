@@ -22,6 +22,7 @@ const MovieDetails = () => {
     _id,
   } = JSON.parse(localStorage["imdb-clone-data"]);
   const handelEdit = (val) => {
+    // eslint-disable-next-line no-restricted-globals
     if (!confirm("Do you want to edit")) {
       return;
     }
@@ -30,6 +31,7 @@ const MovieDetails = () => {
   };
   const handelDelete = async (val) => {
     try {
+      // eslint-disable-next-line no-restricted-globals
       if (!confirm("Do you want to delete")) {
         return;
       }
@@ -56,7 +58,7 @@ const MovieDetails = () => {
     }
   };
   return (
-    <Box className="row">
+    <Box className="row text-white">
       <Image
         p={5}
         h={"50vh"}
