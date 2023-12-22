@@ -36,6 +36,7 @@ const EditMovie = () => {
     poster: yup.string().required(),
     actors: yup.array().required(),
     banner: yup.string().required(),
+    _id: yup.string().required(),
   });
   const {
     movie_name,
@@ -58,8 +59,9 @@ const EditMovie = () => {
       category,
       language,
       poster,
-      banner,
+      banner: banner,
       actors,
+      _id,
     },
     validationSchema: fieldValidationSchema,
     onSubmit: async (movieInfo) => {
@@ -68,7 +70,7 @@ const EditMovie = () => {
         await axios
           .put(
             "https://imdb-clone-backend-abdulwasim-s.vercel.app/movie",
-            { ...movieInfo },
+            movieInfo,
             {
               headers: {
                 "x-auth-token": localStorage["imdb-clone-token"],
@@ -78,14 +80,13 @@ const EditMovie = () => {
           .then((res) => {
             setCredential("");
             setLoading(false);
-            dispatch(updateMovies(res.data.new_movie));
+            dispatch(updateMovies(movieInfo));
+            localStorage["imdb-clone-data"] = JSON.stringify(movieInfo);
             toast.success(res.data.message);
-            delete localStorage["imdb-clone-edit"];
             navTo(`/${res.data_id}`);
           })
           .catch((error) => {
-            const res = error.response.data.message;
-            setCredential(res);
+            setCredential(error);
             setLoading(false);
           });
         return;
@@ -158,7 +159,11 @@ const EditMovie = () => {
                   onChange={handleChange}
                 >
                   {producersList.map((ele, idx) => (
-                    <option key={idx} value={ele.producer_name}>
+                    <option
+                      className="bg-dark"
+                      key={idx}
+                      value={ele.producer_name}
+                    >
                       {ele.producer_name}
                     </option>
                   ))}
@@ -182,7 +187,11 @@ const EditMovie = () => {
                   onChange={(e) => add_actors(e.target.value)}
                 >
                   {actorsList.map((ele, idx) => (
-                    <option key={idx} value={ele.actor_name}>
+                    <option
+                      className="bg-dark"
+                      key={idx}
+                      value={ele.actor_name}
+                    >
                       {ele.actor_name}
                     </option>
                   ))}
@@ -222,7 +231,7 @@ const EditMovie = () => {
                 onChange={handleChange}
               >
                 {categories.map((ele, idx) => (
-                  <option key={idx} value={ele}>
+                  <option className="bg-dark" key={idx} value={ele}>
                     {ele}
                   </option>
                 ))}
@@ -236,7 +245,7 @@ const EditMovie = () => {
                 onChange={handleChange}
               >
                 {languages.map((ele, idx) => (
-                  <option key={idx} value={ele}>
+                  <option className="bg-dark" key={idx} value={ele}>
                     {ele}
                   </option>
                 ))}
@@ -271,7 +280,6 @@ const EditMovie = () => {
               <Input
                 type="text"
                 id="banner"
-                multiple
                 p={1}
                 onChange={handleChange}
                 borderColor={errors.banner ? "red.500" : "gray"}

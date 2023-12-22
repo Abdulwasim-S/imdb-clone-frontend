@@ -26,7 +26,7 @@ const MovieDetails = () => {
     if (!confirm("Do you want to edit")) {
       return;
     }
-    localStorage["imdb-clone-edit"] = JSON.stringify(val);
+    localStorage["imdb-clone-edit"] = val;
     navTo("/edit_movie");
   };
   const handelDelete = async (val) => {
