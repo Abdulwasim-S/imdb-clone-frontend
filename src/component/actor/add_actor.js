@@ -56,7 +56,7 @@ const AddActor = () => {
             setCredential("");
             setLoading(false);
             toast.success(res.data.message);
-            dispatch(postActors(res.data.actorInfo));
+            dispatch(postActors(actorInfo));
             navTo("/add_movie");
           })
           .catch((error) => {
