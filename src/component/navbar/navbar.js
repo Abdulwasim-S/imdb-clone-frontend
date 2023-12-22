@@ -77,6 +77,7 @@ const NavBar = () => {
             />
             <InputRightElement width="4.5rem">
               <Button
+                color={"white"}
                 h="1.75rem"
                 size="md"
                 variant={"ghost"}
