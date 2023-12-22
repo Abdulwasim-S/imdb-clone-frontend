@@ -39,13 +39,13 @@ const AddActor = () => {
       gender: "",
     },
     validationSchema: fieldValidationSchema,
-    onSubmit: async (producerInfo) => {
+    onSubmit: async (actorInfo) => {
       try {
         setLoading(true);
         await axios
           .post(
             "https://imdb-clone-backend-abdulwasim-s.vercel.app/actor",
-            { ...producerInfo },
+            { ...actorInfo },
             {
               headers: {
                 "x-auth-token": localStorage["imdb-clone-token"],
@@ -56,7 +56,7 @@ const AddActor = () => {
             setCredential("");
             setLoading(false);
             toast.success(res.data.message);
-            dispatch(postActors(res.data.new_actor));
+            dispatch(postActors(res.data.actorInfo));
             navTo("/add_movie");
           })
           .catch((error) => {

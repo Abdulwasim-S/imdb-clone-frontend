@@ -56,7 +56,7 @@ const AddProducer = () => {
             setCredential("");
             setLoading(false);
             toast.success(res.data.message);
-            dispatch(postActors(res.data.new_producer));
+            dispatch(postActors(res.data.producerInfo));
             navTo("/add_movie");
           })
           .catch((error) => {
