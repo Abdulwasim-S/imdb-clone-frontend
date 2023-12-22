@@ -74,7 +74,13 @@ const Signup = () => {
     },
   });
   return (
-    <Flex minH={"100vh"} align={"center"} justify={"center"} bg={"black"}>
+    <Flex
+      className="text-white"
+      minH={"100vh"}
+      align={"center"}
+      justify={"center"}
+      bg={"black"}
+    >
       <Stack
         textAlign={"center"}
         spacing={8}
