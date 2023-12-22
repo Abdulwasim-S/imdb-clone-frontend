@@ -67,13 +67,6 @@ const AddMovie = () => {
             setCredential("");
             setLoading(false);
             dispatch(postMovies(res.data.new_movie));
-            (values.movie_name = "")((values.producer = ""))(
-              (values.year = "")
-            )((values.plot = ""))((values.category = ""))(
-              (values.language = "")
-            )((values.poster = ""))((values.banner = ""))((values.actors = ""))(
-              (actors_name_List = [])
-            );
             toast.success(res.data.message);
             navTo("/");
           })
@@ -104,15 +97,12 @@ const AddMovie = () => {
     let add_arr = [...new Set([...actors_name_List, val])].sort();
     values.actors = [...add_arr];
     setActorsList(add_arr);
-    console.log("actor", values.actors);
   };
   const remove_actors = (val) => {
     let remove_arr = actors_name_List.filter((ele) => ele !== val);
     values.actors = remove_arr;
     setActorsList(remove_arr);
   };
-  console.log(producersList);
-  console.log(actorsList);
   return (
     <Flex
       className="text-white"
