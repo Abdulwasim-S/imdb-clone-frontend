@@ -51,7 +51,8 @@ const MovieDetails = () => {
         })
         .catch((error) => {
           const res = error.response.data.message;
-          toast.warning(res);
+          toast.warning("Delete Failed");
+          navTo("/login");
         });
     } catch (error) {
       console.log(error);
